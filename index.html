@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>電卓</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <header>
+        <a>CALCULATOR</a>
+    </header>
+    <body>
+        <div id="app">
+            <table>
+                <tr>
+                    <td colspan="3">
+                        <input type="text" id="output" value="0" v-model="result" class="answer">
+                    </td>
+                    <td>
+                        <button value="c" @click="calculate('c')" class="btn">C</button>
+                    </td>
+                </tr>
+                <tr v-for="row in items">
+                    <td v-for="column in row">
+                        <button v-on:click="calculate(column)" class="btn">{{column}}</button>
+                    </td>
+                </tr>
+            </table>
+            <button class="btn" v-on:click="mute()">mute</button>
+            <audio id="btn_audio">
+                <source src="決定ボタンを押す29.mp3" type="audio/mp3">
+            </audio>
+
+            <br>
+            <div class="resultBox">
+                <resulted-header>HISTORY</resulted-header>
+             <li v-for="resulted in results">
+                <span>{{ resulted.newResult }}</span>
+                <button @click="use(resulted)" class="minibtn">use</button>
+             </li>
+            </div>
+
+        </div>  
+    </body>
+    
+<!-- Vue.js -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+<script src="./main.js"></script>
+
+</html>
